@@ -29,6 +29,7 @@ HpsErr_t Timer_initialise(void* base, PTimerCtx_t* pCtx);
 //  - Returns true if driver previously initialised
 bool Timer_isInitialised(PTimerCtx_t ctx);
 
+
 //Set Load value in the A9 Private Timer
 // - returns ERR_SUCCESS if successful
 HpsErr_t Timer_setLoad( PTimerCtx_t ctx, unsigned int load);
@@ -56,5 +57,12 @@ HpsErr_t Timer_currentValue( PTimerCtx_t ctx, unsigned int* value);
 
 //Read Current Interrupt Flag and if set clear from A9 Timer
 HpsErr_t Timer_irqFlag( PTimerCtx_t ctx, bool* irqFlag);
+
+// Start the timer
+void Timer_start(PTimerCtx_t ctx);
+
+// Stop the timer and calculate elapsed time
+unsigned int Timer_stop(PTimerCtx_t ctx);
+
 
 #endif /* HPS_PRIVATETIMER_H_ */

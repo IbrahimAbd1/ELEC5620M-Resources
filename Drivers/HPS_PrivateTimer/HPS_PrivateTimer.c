@@ -148,3 +148,15 @@ HpsErr_t Timer_irqFlag( PTimerCtx_t ctx, bool* irqFlag) {
     if(*irqFlag) ctx->base[TIMER_INTERRUPT] = 0x1;
     return ERR_SUCCESS;
 }
+
+//function that starts the timer
+void Timer_start(PTimerCtx_t ctx) {
+    ctx->base[TIMER_CONTROL] |= 1; // Start the timer
+}
+
+// function that stops the timer and calculates the elapsed time
+unsigned int Timer_stop(PTimerCtx_t ctx) {
+    unsigned int elapsedTime = ctx->base[TIMER_VALUE];
+    ctx->base[TIMER_CONTROL] = 0; // Stop the timer
+    return elapsedTime;
+}
